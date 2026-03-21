@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Registo Estudante foun by Genjiro | Timor-Leste</title>
+  <!-- Google Fonts: Poppins modern & elegan -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Arial', sans-serif;
+      background: linear-gradient(145deg, #0f2b3d 0%, #1b4f6e 50%, #2c7da0 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+
+    /* Decorative subtle pattern overlay */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(255,255,240,0.05) 0%, rgba(0,0,0,0.1) 100%);
+      pointer-events: none;
+    }
+
+    /* Main card container */
+    .form-container {
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-card {
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(0px);
+      border-radius: 2rem;
+      padding: 2rem 2rem 2.2rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Header */
+    .form-card h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1F5E3A, #2C9B5E);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #4a627a;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-bottom: 2px solid #e9ecef;
+      display: inline-block;
+      width: auto;
+      margin: 0 auto 1.8rem auto;
+      padding-bottom: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* Form group styling */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: #1f3b4c;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      letter-spacing: -0.2px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1.2rem;
+      background-color: #fff;
+      transition: all 0.25s ease;
+      outline: none;
+      color: #1e2a3e;
+      font-weight: 500;
+    }
+
+    input:focus, select:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+    }
+
+    input::placeholder {
+      color: #9aaebf;
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+
+    /* Gender select custom */
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a627a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+      background-repeat: no-repeat;
+      background-position: right 1.2rem center;
+      background-size: 1.2rem;
+    }
+
+    /* Button group */
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 3rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Poppins', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .btn-submit {
+      background-color: #28a745;
+      color: white;
+      box-shadow: 0 4px 10px rgba(40, 167, 69, 0.25);
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(33, 136, 56, 0.3);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn-reset {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .btn-reset:hover {
+      background-color: #5a6268;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(108, 117, 125, 0.25);
+    }
+
+    .btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Notification styling */
+    .notification {
+      margin-top: 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 1.5rem;
+      font-weight: 500;
+      text-align: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      background: #f8fafc;
+    }
+
+    .notification.success {
+      background: #e3f7ec;
+      color: #1e6f3f;
+      border-left: 5px solid #28a745;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .notification.error {
+      background: #fee9e6;
+      color: #b91c1c;
+      border-left: 5px solid #dc3545;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .form-card {
+        padding: 1.6rem;
+      }
+      .form-card h1 {
+        font-size: 1.6rem;
+      }
+      .button-group {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .btn {
+        width: 100%;
+      }
+      input, select {
+        padding: 0.75rem 1rem;
+      }
+    }
+
+    /* subtle animation */
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-card {
+      animation: fadeSlide 0.4s ease-out;
+    }
+
+    /* Additional polish */
+    .required-star::after {
+      content: "*";
+      color: #dc3545;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <div class="form-card">
+    <h1>📘 Registo Estudante foun</h1>
+    <div style="text-align: center;">
+      <span class="subtitle">Prense form iha okos</span>
+    </div>
+
+    <form id="registrationForm" novalidate>
+      <!-- Nama field -->
+      <div class="form-group">
+        <label class="required-star">Naran kompleto</label>
+        <input type="text" name="nama" id="nama" placeholder="Naran kompleto" autocomplete="name" required>
+      </div>
+
+      <!-- Alamat field -->
+      <div class="form-group">
+        <label class="required-star">Alamat</label>
+        <input type="text" name="alamat" id="alamat" placeholder="Rua de Cristo Rei, Dili, Timor-Leste" autocomplete="address-line1" required>
+      </div>
+
+      <!-- Nomor HP: hanya angka, maksimal 12 digit -->
+      <div class="form-group">
+        <label class="required-star">Nomor HP</label>
+        <input type="tel" name="numerotlf" id="nomorhp" placeholder="67076591518 (hanya angka, maks 12 digit)" maxlength="12" inputmode="numeric" required>
+        <small style="color:#5f7f9e; font-size:0.7rem; margin-top: 0.3rem; display: block;">* Hanya digit angka, maksimal 12 karakter</small>
+      </div>
+
+      <!-- Gender dropdown -->
+      <div class="form-group">
+        <label class="required-star">Jenis Kelamin</label>
+        <select name="gender" id="gender" required>
+          <option value="" disabled selected>-- Hili Gender --</option>
+          <option value="Laki-laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
+      </div>
+
+      <!-- Tombol aksi -->
+      <div class="button-group">
+        <button type="submit" class="btn btn-submit" id="submitBtn">
+          <span>📋</span> Daftar Sekarang
+        </button>
+        <button type="button" class="btn btn-reset" id="resetBtn">
+          <span>⟳</span> Reset Form
+        </button>
+      </div>
+
+      <!-- Tempat notifikasi -->
+      <div id="notification" class="notification"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ======================== KONFIGURASI =========================
+  // GANTI URL_INI dengan URL Web App Google Apps Script yang sudah dideploy
+  // Contoh: "https://script.google.com/macros/s/ABCDEFGHIJKLMNOPQRSTUVWXYZ/exec"
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdCwOQ6rAcn3YlkmnQa_pP79KYucicGlpEGzJGK62BTypSSzo4AQXY-LqHvlC17UBvJg/exec";   // <-- Ganti dengan URL asli
+  
+  // DOM Elements
+  const form = document.getElementById('registrationForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const notificationDiv = document.getElementById('notification');
+  const nomorhpInput = document.getElementById('nomorhp');
+
+  // Helper: Tampilkan pesan notifikasi
+  function showMessage(message, isError = false) {
+    notificationDiv.textContent = message;
+    notificationDiv.className = `notification ${isError ? 'error' : 'success'}`;
+    // Optional: scroll ke notifikasi dengan smooth
+    notificationDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Bersihkan notifikasi
+  function clearNotification() {
+    notificationDiv.textContent = '';
+    notificationDiv.className = 'notification';
+  }
+
+  // Reset manual semua field form + hapus notifikasi
+  function resetFormFields() {
+    form.reset();               // reset semua input dan select ke nilai awal
+    clearNotification();
+    // Pastikan field nomorhp dibersihkan dari karakter non-digit (form.reset mengembalikan placeholder)
+    // dan jika ada validasi visual, kita bersihkan style error
+    const allInputs = form.querySelectorAll('input, select');
+    allInputs.forEach(field => {
+      field.style.borderColor = '';
+    });
+    // fokus ke nama setelah reset
+    document.getElementById('nama').focus();
+  }
+
+  // Validasi form sebelum submit (client side)
+  function validateForm() {
+    const nama = document.querySelector('input[name="nama"]').value.trim();
+    const alamat = document.querySelector('input[name="alamat"]').value.trim();
+    let nomorhpRaw = document.querySelector('input[name="nomorhp"]').value.trim();
+    const gender = document.querySelector('select[name="gender"]').value;
+
+    // Reset border error highlight
+    document.querySelectorAll('.form-group input, .form-group select').forEach(el => {
+      el.style.borderColor = '';
+    });
+
+    let isValid = true;
+
+    if (!nama) {
+      showMessage('❌ Nama lengkap wajib diisi', true);
+      document.querySelector('input[name="nama"]').style.borderColor = '#dc3545';
+      isValid = false;
+      return false;
+    }
+    if (!alamat) {
+      showMessage('❌ Alamat wajib diisi', true);
+      document.querySelector('input[name="alamat"]').style.borderColor = '#dc3545';
+      isValid = false;
+      return false;
+    }
+    if (!nomorhpRaw) {
+      showMessage('❌ Nomor HP wajib diisi', true);
+      document.querySelector('input[name="nomorhp"]').style.borderColor = '#dc3545';
+      isValid = false;
+      return false;
+    }
+    // Validasi hanya angka dan maksimal 12 digit
+    const digitsOnly = nomorhpRaw.replace(/\D/g, '');
+    if (digitsOnly.length === 0) {
+      showMessage('❌ Nomor HP harus berisi angka (0-9)', true);
+      document.querySelector('input[name="nomorhp"]').style.borderColor = '#dc3545';
+      isValid = false;
+      return false;
+    }
+    if (digitsOnly.length > 12) {
+      showMessage('❌ Nomor HP maksimal 12 digit angka', true);
+      document.querySelector('input[name="nomorhp"]').style.borderColor = '#dc3545';
+      isValid = false;
+      return false;
+    }
+    if (!gender) {
+      showMessage('❌ Pilih jenis kelamin terlebih dahulu', true);
+      document.querySelector('select[name="gender"]').style.borderColor = '#dc3545';
+      isValid = false;
+      return false;
+    }
+
+    return true;
+  }
+
+  // Format waktu local: YYYY-MM-DD HH:MM:SS (sesuai spec)
+  function getCurrentTimestamp() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+  // Kirim data ke Google Apps Script
+  async function sendToGoogleSheets(payload) {
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'cors',               // CORS standar, Apps Script akan menerima
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+  }
+
+  // Event handler submit utama
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    // Validasi awal
+    if (!validateForm()) return;
+
+    // Ambil data dari form & bersihkan nomorhp (hanya angka, max 12 digit)
+    const namaField = document.querySelector('input[name="nama"]');
+    const alamatField = document.querySelector('input[name="alamat"]');
+    const nomorhpField = document.querySelector('input[name="nomorhp"]');
+    const genderField = document.querySelector('select[name="gender"]');
+
+    let rawNomor = nomorhpField.value.trim();
+    const cleanedNomor = rawNomor.replace(/\D/g, '').slice(0, 12);   // hanya angka & max 12 digit
+
+    // Data payload dengan key persis: nama, alamat, nomorhp, gender, waktu
+    const payload = {
+      nama: namaField.value.trim(),
+      alamat: alamatField.value.trim(),
+      nomorhp: cleanedNomor,
+      gender: genderField.value,
+      waktu: getCurrentTimestamp()      // otomatis diisi javascript, tidak terlihat user
+    };
+
+    // Disable tombol submit & ubah teks, mencegah double submit
+    submitBtn.disabled = true;
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span>⏳</span> Menyimpan...';
+
+    try {
+      // Panggil Apps Script
+      const responseData = await sendToGoogleSheets(payload);
+      if (responseData.result === 'success') {
+        showMessage('✅ Berhasil daftar! Data tersimpan di Google Sheets', false);
+        // Reset form setelah sukses (otomatis bersihkan semua field & notifikasi)
+        resetFormFields();
+        // Optional: fokus ke field nama
+        document.getElementById('nama').focus();
+      } else {
+        // Jika apps script mengembalikan sukses tapi tidak sesuai format, tetap anggap gagal
+        showMessage('❌ Gagal daftar! Respons tidak valid dari server', true);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+      let errorMsg = '❌ Gagal daftar! Periksa koneksi atau URL Apps Script';
+      if (error.message.includes('Failed to fetch')) {
+        errorMsg = '❌ Gagal daftar! Tidak dapat terhubung ke server. Pastikan URL Apps Script sudah benar dan di-deploy sebagai "Anyone"';
+      }
+      showMessage(errorMsg, true);
+    } finally {
+      // Aktifkan kembali tombol
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
+  }
+
+  // ================ Fungsi tambahan: hanya angka & batas 12 digit pada input nomorhp (real-time) =========
+  function enforceNumericAndMaxLength(e) {
+    let value = e.target.value;
+    // Hanya izinkan digit
+    let numericValue = value.replace(/\D/g, '');
+    if (numericValue.length > 12) {
+      numericValue = numericValue.slice(0, 12);
+    }
+    if (e.target.value !== numericValue) {
+      e.target.value = numericValue;
+    }
+  }
+
+  // Reset manual handler
+  function onManualReset() {
+    resetFormFields();
+    // reset border color tambahan
+    document.querySelectorAll('.form-group input, .form-group select').forEach(el => {
+      el.style.borderColor = '';
+    });
+    // Reset nomorhp juga jika ada filter
+    if (nomorhpInput) {
+      nomorhpInput.value = '';
+    }
+  }
+
+  // Pasang event listeners
+  form.addEventListener('submit', handleSubmit);
+  resetBtn.addEventListener('click', onManualReset);
+  // Filter input nomorhp hanya angka dan max 12 digit secara realtime
+  if (nomorhpInput) {
+    nomorhpInput.addEventListener('input', enforceNumericAndMaxLength);
+  }
+
+  // Pesan peringatan jika SCRIPT_URL masih default (placeholder)
+  if (SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+    const warningDiv = document.createElement('div');
+    warningDiv.style.background = '#fff3cd';
+    warningDiv.style.color = '#856404';
+    warningDiv.style.padding = '0.7rem';
+    warningDiv.style.borderRadius = '1rem';
+    warningDiv.style.fontSize = '0.8rem';
+    warningDiv.style.marginTop = '1rem';
+    warningDiv.style.textAlign = 'center';
+    warningDiv.innerHTML = '⚠️ <strong>Perhatian:</strong> URL Google Apps Script belum diatur. Ganti variabel <code>SCRIPT_URL</code> dengan URL Web App yang sudah dideploy.';
+    document.querySelector('.form-card').appendChild(warningDiv);
+  }
+</script>
+</body>
+</html>
